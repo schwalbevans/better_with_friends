@@ -13,12 +13,9 @@ class Body extends StatelessWidget {
 
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[Text("Welcome to AccountABuddy",
-      style: TextStyle(fontWeight: FontWeight.bold)
+      children: <Widget>[const Text("Welcome to AccountABuddy",
+      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30)
       ),
-        SvgPicture.asset("assets/icons/chat.svg",
-        height: size.height * 0.45,
-        ),
         TextButton(
             style:
             TextButton.styleFrom(
@@ -36,11 +33,44 @@ class Body extends StatelessWidget {
               primary: Colors.black,
               backgroundColor: Colors.grey,
             ),
-            onPressed: (){},
+            onPressed: (){Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SecondRoute()),
+            );
+            },
             child: Text("SIGNUP"))
       ],
    ),
    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Route'),
+      ),
+      body:
+      Center(
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+    ]
+      ),
+      ),
+    );
   }
 }
 
