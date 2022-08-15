@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "549904532735",
+    "project_id": "better-with-friends-408e4",
+    "storage_bucket": "better-with-friends-408e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549904532735:android:06edd6f23ea1f3c51ff8ca",
+        "android_client_info": {
+          "package_name": "com.example.better_with_friends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "549904532735-8fnt0kco639koi3pnp4e70d0cptafu6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9fAoctJJ02NgfLtrhl0ZdcnwIK50itvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "549904532735-8fnt0kco639koi3pnp4e70d0cptafu6d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "549904532735-3b1ps7id5bi1i4o74fu2kaagrl8hgage.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.betterWithFriends"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
