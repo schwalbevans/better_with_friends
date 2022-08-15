@@ -19,13 +19,13 @@ class Body extends StatelessWidget {
         TextButton(
             style:
             TextButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 45),
+                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
                 primary: Colors.white,
               backgroundColor: Colors.teal,
             ),
             onPressed: (){},
             child: Text("LOGIN")),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         TextButton(
             style:
             TextButton.styleFrom(
@@ -46,6 +46,8 @@ class Body extends StatelessWidget {
 }
 
 class SecondRoute extends StatelessWidget {
+  const SecondRoute({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class SecondRoute extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Route'),
+        title: const Text('Signup'),
       ),
       body:
       Center(
@@ -64,13 +66,13 @@ class SecondRoute extends StatelessWidget {
           TextFormField(
       decoration: const InputDecoration(
           border: UnderlineInputBorder(),
-        labelText: 'Enter your username',
+        labelText: 'Enter your new username',
           ),
           ),
           TextFormField(
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
-              labelText: 'Enter your password',
+              labelText: 'Enter your new password',
             ),
           ),
           SizedBox(height: 30),
