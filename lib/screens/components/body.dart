@@ -61,11 +61,24 @@ class SecondRoute extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          TextFormField(
+      decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+        labelText: 'Enter your username',
+          ),
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Enter your password',
+            ),
+          ),
+          SizedBox(height: 30),
           ElevatedButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Go back!'),
+          child: const Text('Signup'),
         ),
     ]
       ),
