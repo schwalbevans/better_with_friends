@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:better_with_friends/constants.dart';
+
 import 'package:better_with_friends/screens/components/background.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,7 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size; //Provides us with total height and width of our screen
+   // Size size = MediaQuery.of(context).size; //Provides us with total height and width of our screen
    return Background(
 
       child: Column(
@@ -47,8 +46,13 @@ class Body extends StatelessWidget {
 }
 
 class SecondRoute extends StatelessWidget {
-  const SecondRoute({Key? key}) : super(key: key);
+  SecondRoute({Key? key}) : super(key: key);
+  final myController = TextEditingController();
 
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
