@@ -48,15 +48,17 @@ class Body extends StatelessWidget {
 class SecondRoute extends StatelessWidget {
   SecondRoute({Key? key}) : super(key: key);
   final myController = TextEditingController();
+  final passController = TextEditingController();
 
   void dispose() {
     // Clean up the controller when the widget is disposed.
     myController.dispose();
+    passController.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: AppBar(
@@ -69,6 +71,7 @@ class SecondRoute extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           TextFormField(
+            controller: myController,
       decoration: const InputDecoration(
           border: UnderlineInputBorder(),
         labelText: 'Enter your new username',
@@ -85,8 +88,8 @@ class SecondRoute extends StatelessWidget {
           onPressed: () async {
             try {
               UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                  email: "barry.allen@example.com",
-                  password: "SuperSecretPassword!"
+                  email: myController.text,
+                  password: passController.text
               );
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
