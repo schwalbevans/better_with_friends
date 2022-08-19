@@ -23,7 +23,11 @@ class Body extends StatelessWidget {
                 primary: Colors.white,
               backgroundColor: Colors.teal,
             ),
-            onPressed: (){},
+            onPressed: (){Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Signup()),
+                );
+              },
             child: Text("LOGIN")),
         const SizedBox(height: 16),
         TextButton(
@@ -35,7 +39,7 @@ class Body extends StatelessWidget {
             ),
             onPressed: (){Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SecondRoute()),
+                MaterialPageRoute(builder: (context) => Signup()),
             );
             },
             child: Text("SIGNUP"))
@@ -45,8 +49,8 @@ class Body extends StatelessWidget {
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  SecondRoute({Key? key}) : super(key: key);
+class Signup extends StatelessWidget {
+  Signup({Key? key}) : super(key: key);
   final myController = TextEditingController();
   final passController = TextEditingController();
 
