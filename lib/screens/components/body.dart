@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:better_with_friends/screens/components/background.dart';
+import 'package:better_with_friends/screens/Inital_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
@@ -132,7 +132,7 @@ class Login extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Signup'),
+        title: const Text('Login'),
       ),
       body:
       Center(
