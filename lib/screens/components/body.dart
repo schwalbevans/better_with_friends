@@ -82,6 +82,7 @@ class Signup extends StatelessWidget {
           ),
           ),
           TextFormField(
+            controller: passController,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'Enter your new password',
@@ -148,6 +149,7 @@ class Login extends StatelessWidget {
                 ),
               ),
               TextFormField(
+                controller: passController,
                 decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                   labelText: 'Enter your password',
@@ -157,20 +159,17 @@ class Login extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   try {
-                    UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: myController.text,
-                        password: passController.text
+                        password: passController.text,
                     );
                   } on FirebaseAuthException catch (e) {
-                    if (e.code == 'weak-password') {
-                      print('The password provided is too weak.');
-                    } else if (e.code == 'email-already-in-use') {
-                      print('The account already exists for that email.');
+                    if (e.code == 'user-not-found') {
+                      print('No user found for that email.');
+                    } else if (e.code == 'wrong-password') {
+                      print('Wrong password provided for that user.');
                     }
-                  } catch (e) {
-                    print(e);
                   }
-                  Navigator.pop(context);
                 },
                 child: const Text('Signup'),
               ),
