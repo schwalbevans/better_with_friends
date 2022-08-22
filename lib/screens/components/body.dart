@@ -95,6 +95,7 @@ class Signup extends StatelessWidget {
               UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
                   email: myController.text,
                   password: passController.text
+
               );
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
@@ -156,13 +157,17 @@ class Login extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 30),
-              ElevatedButton(
+            ElevatedButton(
                 onPressed: () async {
                   try {
                     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
                         email: myController.text,
                         password: passController.text,
                     );
+                    if (userCredential != null) {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => initalMenu()));
+                    }
                   } on FirebaseAuthException catch (e) {
                     if (e.code == 'user-not-found') {
                       print('No user found for that email.');
@@ -170,8 +175,11 @@ class Login extends StatelessWidget {
                       print('Wrong password provided for that user.');
                     }
                   }
+
+
                 },
-                child: const Text('Signup'),
+                child: const Text('Login'),
+
               ),
             ]
         ),
