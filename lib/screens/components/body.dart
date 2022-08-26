@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:better_with_friends/screens/components/background.dart';
+import 'package:better_with_friends/screens/components/background_login.dart';
 import 'package:better_with_friends/screens/Inital_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,7 +9,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    // Size size = MediaQuery.of(context).size; //Provides us with total height and width of our screen
-   return Background(
+   return Background_Login(
 
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

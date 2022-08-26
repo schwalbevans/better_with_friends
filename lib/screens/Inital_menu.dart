@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 class initalMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: menuBody(),);
+    return Scaffold(appBar: AppBar(title: const Text('Main Menu'),),body: menuBody(),);
   }
 }
