@@ -9,6 +9,7 @@ class menuBody extends StatelessWidget {
         //mainAxisAlignment: MainAxisAlignment.center,
         children: const <Widget>[Text("List of Habits",
         style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30)
+
     ),
     ],
     ),
