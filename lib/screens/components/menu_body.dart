@@ -34,8 +34,19 @@ class menuBody extends StatelessWidget {
 
 void openDialog(context) => showDialog( builder: (context) => AlertDialog(
     title: Text('New Habit'),
-    content: TextField(
+    content: Column(
+  crossAxisAlignment: CrossAxisAlignment.stretch,
+  //position
+  mainAxisSize: MainAxisSize.min,
+  // wrap content in flutter
+  children: <Widget>[
+  TextField(
+  decoration: InputDecoration(hintText: 'Enter your Habit Name'),
+  ),
+    TextField(
       decoration: InputDecoration(hintText: 'Enter your Habit Name'),
+    ),
+  ]
     ),
     actions: [
       TextButton(onPressed: () {}, child: Text('SUBMIT')),
