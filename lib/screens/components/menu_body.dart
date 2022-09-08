@@ -1,5 +1,6 @@
 
 import 'package:better_with_friends/screens/components/background_menu.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class menuBody extends StatefulWidget {
@@ -8,6 +9,8 @@ class menuBody extends StatefulWidget {
 class HomePage extends State<menuBody>{
   @override
   String dropdownvalue = "Daily";
+  FirebaseDatabase database = FirebaseDatabase.instance;
+
   Widget build(BuildContext context) {
     return Background_Menu(
       child: Column(
