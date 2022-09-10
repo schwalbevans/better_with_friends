@@ -10,9 +10,11 @@ class HomePage extends State<menuBody>{
   @override
   String dropdownvalue = "Daily";
   FirebaseDatabase database = FirebaseDatabase.instance;
-
+  DatabaseReference ref = FirebaseDatabase.instance.ref();
   Widget build(BuildContext context) {
+
     return Background_Menu(
+
       child: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -44,6 +46,7 @@ class HomePage extends State<menuBody>{
     ];
     return menuItems;
   }
+
 void openDialog(context) => showDialog( builder: (context) => AlertDialog(
     title: Text('New Habit'),
     content: Column(
@@ -70,8 +73,16 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
     },items: dropdownItems, )
   ]
     ),
+
     actions: [
-      TextButton(onPressed: () {}, child: Text('SUBMIT')),
+      TextButton(onPressed: () async {
+        await ref.set({
+          "name": "Mark",
+          "age": 18,
+          "address": {
+            "line1": "100 Mountain View"
+          }
+        });}, child: Text('SUBMIT')),
     ],
   ), context:context,
   );
