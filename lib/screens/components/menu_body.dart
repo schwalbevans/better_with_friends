@@ -77,7 +77,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
     actions: [
       TextButton(onPressed: () async {
         await ref.set({
-          "name": "Mark",
+          "Habit": "",
           "age": 18,
           "address": {
             "line1": "100 Mountain View"
