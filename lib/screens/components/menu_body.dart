@@ -11,6 +11,15 @@ class HomePage extends State<menuBody>{
   String dropdownvalue = "Daily";
   FirebaseDatabase database = FirebaseDatabase.instance;
   DatabaseReference ref = FirebaseDatabase.instance.ref();
+  final habitController = TextEditingController();
+  final passController = TextEditingController();
+
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    habitController.dispose();
+    passController.dispose();
+  }
+
   Widget build(BuildContext context) {
 
     return Background_Menu(
@@ -57,6 +66,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
   // wrap content in flutter
   children: <Widget>[
   TextField(
+    controller: habitController,
   decoration: InputDecoration(hintText: 'Enter your Habit Name'),
   ),
     DropdownButtonFormField(
@@ -77,11 +87,8 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
     actions: [
       TextButton(onPressed: () async {
         await ref.set({
-          "Habit": "",
-          "age": 18,
-          "address": {
-            "line1": "100 Mountain View"
-          }
+          "HabitName": habitController.text,
+          "Frequency": dropdownvalue
         });}, child: Text('SUBMIT')),
     ],
   ), context:context,
