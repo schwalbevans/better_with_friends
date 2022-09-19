@@ -10,7 +10,7 @@ class HomePage extends State<menuBody>{
   @override
   String dropdownvalue = "Daily";
   FirebaseDatabase database = FirebaseDatabase.instance;
-  DatabaseReference ref = FirebaseDatabase.instance.ref();
+  DatabaseReference ref = FirebaseDatabase.instance.ref("Habits");
   final habitController = TextEditingController();
   final passController = TextEditingController();
 
