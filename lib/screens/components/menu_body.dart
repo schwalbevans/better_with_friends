@@ -10,7 +10,7 @@ class HomePage extends State<menuBody>{
   @override
   String dropdownvalue = "Daily";
   FirebaseDatabase database = FirebaseDatabase.instance;
-  DatabaseReference ref = FirebaseDatabase.instance.ref("Habits");
+  DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/Andy");
   final habitController = TextEditingController();
   final passController = TextEditingController();
 
@@ -87,9 +87,11 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
     actions: [
       TextButton(onPressed: () async {
         await ref.set({
-          "HabitName": habitController.text,
-          "Frequency": dropdownvalue
-        });}, child: Text('SUBMIT')),
+            "HabitName": habitController.text,
+            "Frequency": dropdownvalue//TODO: Add a numofhabits variable for each user to keep track of how many they have
+        });
+        Navigator.pop(context);
+        }, child: Text('SUBMIT')),
     ],
   ), context:context,
   );
