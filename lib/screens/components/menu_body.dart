@@ -1,7 +1,9 @@
 
 import 'package:better_with_friends/screens/components/background_menu.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:better_with_friends/screens/components/body.dart';
 
 class menuBody extends StatefulWidget {
   HomePage createState()=> HomePage();
@@ -10,7 +12,7 @@ class HomePage extends State<menuBody>{
   @override
   String dropdownvalue = "Daily";
   FirebaseDatabase database = FirebaseDatabase.instance;
-  DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/Andy");
+  DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
   final habitController = TextEditingController();
   final passController = TextEditingController();
 
@@ -88,7 +90,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
       TextButton(onPressed: () async {
         await ref.set({
             "HabitName": habitController.text,
-            "Frequency": dropdownvalue//TODO: Add a numofhabits variable for each user to keep track of how many they have
+            "Frequency": dropdownvalue //TODO: Add a numofhabits variable for each user to keep track of how many they have
         });
         Navigator.pop(context);
         }, child: Text('SUBMIT')),
@@ -96,3 +98,4 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
   ), context:context,
   );
 }
+
