@@ -12,9 +12,13 @@ class HomePage extends State<menuBody>{
   @override
   String dropdownvalue = "Daily";
   FirebaseDatabase database = FirebaseDatabase.instance;
+
   DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
+
   final habitController = TextEditingController();
   final passController = TextEditingController();
+
+  get userId => null;
 
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -88,10 +92,27 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
 
     actions: [
       TextButton(onPressed: () async {
-        await ref.set({
+
+        final snapshot = await ref.child("Habits/" + FirebaseAuth.instance.currentUser!.uid + "numOfHabits").get();
+        if (snapshot.exists) {
+          ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" + snapshot.toString());
+          await ref.set({
             "HabitName": habitController.text,
-            "Frequency": dropdownvalue //TODO: Add a numofhabits variable for each user to keep track of how many they have
-        });
+            "Frequency": dropdownvalue
+          });
+        } else {
+          ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
+          print('No data available.');
+          await ref.set({
+            "numOfHabits": "1",
+          });
+          ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/1");
+          await ref.set({
+          "HabitName": habitController.text,
+          "Frequency": dropdownvalue
+          });
+        }
+
         Navigator.pop(context);
         }, child: Text('SUBMIT')),
     ],

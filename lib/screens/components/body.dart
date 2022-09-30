@@ -107,6 +107,7 @@ class Signup extends StatelessWidget {
             } catch (e) {
               print(e);
             }
+
             Navigator.pop(context);
           },
           child: const Text('Signup'),
