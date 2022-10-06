@@ -95,7 +95,14 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
 
         final snapshot = await ref.child("Habits/" + FirebaseAuth.instance.currentUser!.uid + "numOfHabits").get();
         if (snapshot.exists) {
-          ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" + snapshot.toString());
+          ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" );
+          var tempHab = int.parse(snapshot.toString());
+          tempHab += 1;
+          tempHab.toString();
+          await ref.update({
+            "NumOfHabits": tempHab,
+          });
+          ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" + tempHab.toString());
           await ref.set({
             "HabitName": habitController.text,
             "Frequency": dropdownvalue
