@@ -107,6 +107,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
             "HabitName": habitController.text,
             "Frequency": dropdownvalue
           });
+
         } else {
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
           print('No data available.');
@@ -119,6 +120,10 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           "Frequency": dropdownvalue
           });
         }
+        DatabaseReference starCountRef = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
+        starCountRef.onValue.listen((DatabaseEvent event) {
+          final data = event.snapshot.value;
+        });
 
         Navigator.pop(context);
         }, child: Text('SUBMIT')),
