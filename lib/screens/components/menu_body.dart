@@ -17,7 +17,9 @@ class HomePage extends State<menuBody>{
 
   final habitController = TextEditingController();
   final passController = TextEditingController();
-
+  final phoneController = TextEditingController();
+  List<String> HabitNames = <String>['Aby', 'Aish', 'Ayan', 'Ben', 'Bob', 'Charlie', 'Cook', 'Carline'];
+  var data;
   get userId => null;
 
   void dispose() {
@@ -25,8 +27,13 @@ class HomePage extends State<menuBody>{
     habitController.dispose();
     passController.dispose();
   }
+  void addItemToList() {
+    setState(() {
+      HabitNames.insert(0, data.text);
+    });
+  }
 
-  Widget build(BuildContext context) {
+    Widget build(BuildContext context) {
 
     return Background_Menu(
 
@@ -71,10 +78,11 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
 
   // wrap content in flutter
   children: <Widget>[
-  TextField(
+     TextField(
     controller: habitController,
-  decoration: InputDecoration(hintText: 'Enter your Habit Name'),
-  ),
+    decoration: InputDecoration(hintText: 'Enter your Habit Name'),
+    ),
+
     DropdownButtonFormField(
         value: dropdownvalue,
         onSaved: (String? newValue){
@@ -122,10 +130,11 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
         }
         DatabaseReference starCountRef = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
         starCountRef.onValue.listen((DatabaseEvent event) {
-          final data = event.snapshot.value;
+           data = event.snapshot.value;
         });
 
         Navigator.pop(context);
+
         }, child: Text('SUBMIT')),
     ],
   ), context:context,
