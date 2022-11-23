@@ -29,7 +29,7 @@ class HomePage extends State<menuBody>{
   }
   void addItemToList() {
     setState(() {
-      HabitNames.insert(0, data.text);
+      HabitNames.insert(0, "hello");//Change to input actual data from the database
     });
   }
 
@@ -48,11 +48,26 @@ class HomePage extends State<menuBody>{
           const Text("List of Habits",
         style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30)
     ),
-
+      Expanded(
+      child: ListView.builder(
+      padding: const EdgeInsets.all(8),
+      itemCount: HabitNames.length,
+      itemBuilder: (BuildContext context, int index) {
+      return Container(
+      height: 50,
+      margin: EdgeInsets.all(2),
+      child: Center(
+      child: Text('${HabitNames[index]})',
+      style: TextStyle(fontSize: 18),
+      )
+      )
+      );
+      },
+      ),
+      ),
     ],
 
-    ),
-
+                    ),
     );
 
   }
@@ -130,10 +145,14 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
         }
         DatabaseReference starCountRef = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
         starCountRef.onValue.listen((DatabaseEvent event) {
+          //TODO//
+          //DATA seems to be empty here, figure out what is going on here
            data = event.snapshot.value;
         });
-
+        //print("Habits/" + FirebaseAuth.instance.currentUser!.uid);
+        //print(data.text);
         Navigator.pop(context);
+        addItemToList();
 
         }, child: Text('SUBMIT')),
     ],
