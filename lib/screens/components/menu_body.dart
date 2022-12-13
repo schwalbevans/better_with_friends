@@ -115,8 +115,12 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
 
     actions: [
       TextButton(onPressed: () async {
-
-        final snapshot = await ref.child("Habits/" + FirebaseAuth.instance.currentUser!.uid + "numOfHabits").get();
+        ref = FirebaseDatabase.instance.ref();
+        DataSnapshot snapshot = await ref.child('Habits/' + FirebaseAuth.instance.currentUser!.uid).get();
+        //This is pulling the whole habits, including the num of the habits
+        Object? temp = snapshot.value;
+        var numOfHabits = temp.toString();
+        //TODO TAKE THIS STRING AND PULL OUT THE NUM OF HABITS//
         if (snapshot.exists) {
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" );
           var tempHab = int.parse(snapshot.toString());
@@ -133,9 +137,9 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
 
         } else {
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
-          print('No data available.');
+          //print('No data available.');
           await ref.set({
-            "numOfHabits": "1",
+            "numOfHabits": "2",
           });
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/1");
           await ref.set({
@@ -143,12 +147,12 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           "Frequency": dropdownvalue
           });
         }
-        DatabaseReference starCountRef = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
-        starCountRef.onValue.listen((DatabaseEvent event) {
-          //TODO//
-          //DATA seems to be empty here, figure out what is going on here
-           data = event.snapshot.value;
-        });
+       // final data = await ref.child("Habits/" + FirebaseAuth.instance.currentUser!.uid).get();
+        //if (data.exists) {
+         // print(data.value);
+        //} else {
+          //print('No data available.');
+        //}
         //print("Habits/" + FirebaseAuth.instance.currentUser!.uid);
         //print(data.text);
         Navigator.pop(context);

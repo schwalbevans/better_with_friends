@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
             style:
             TextButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 45),
-                primary: Colors.white,
+                foregroundColor: Colors.white,
               backgroundColor: Colors.teal,
             ),
             onPressed: (){Navigator.push(
@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
             style:
             TextButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 45),
-              primary: Colors.black,
+              foregroundColor:Colors.black,
               backgroundColor: Colors.grey,
             ),
             onPressed: (){Navigator.push(
