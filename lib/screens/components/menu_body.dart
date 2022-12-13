@@ -120,10 +120,12 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
         //This is pulling the whole habits, including the num of the habits
         Object? temp = snapshot.value;
         var numOfHabits = temp.toString();
+        int find = numOfHabits.indexOf("numOfHabits");
+        int final_num = int.parse(numOfHabits[find + 13]);
         //TODO TAKE THIS STRING AND PULL OUT THE NUM OF HABITS//
         if (snapshot.exists) {
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" );
-          var tempHab = int.parse(snapshot.toString());
+          var tempHab = final_num;
           tempHab += 1;
           tempHab.toString();
           await ref.update({
@@ -139,7 +141,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
           //print('No data available.');
           await ref.set({
-            "numOfHabits": "2",
+            "numOfHabits": "1",
           });
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/1");
           await ref.set({
