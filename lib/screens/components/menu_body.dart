@@ -127,13 +127,12 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" );
           var tempHab = final_num;
           tempHab += 1;
-          tempHab.toString();
           await ref.update({
-            "NumOfHabits": tempHab,
+            "numOfHabits": tempHab,
           });
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" + tempHab.toString());
           await ref.set({
-            "HabitName": habitController.text,
+            "habitName": habitController.text,
             "Frequency": dropdownvalue
           });
 
@@ -141,7 +140,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
           //print('No data available.');
           await ref.set({
-            "numOfHabits": "1",
+            "NumOfHabits": "1",
           });
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/1");
           await ref.set({
