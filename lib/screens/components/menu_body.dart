@@ -148,16 +148,8 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           "Frequency": dropdownvalue
           });
         }
-        final getRef = FirebaseDatabase.instance.ref();
-        final data = await getRef.child("Habits/" + FirebaseAuth.instance.currentUser!.uid +"/1").get();
-        print("Habits/" + FirebaseAuth.instance.currentUser!.uid);
-        if (data.exists) {
-         print(data.value);
-        } else {
-          print('No data available.');
-        }
-        //print("Habits/" + FirebaseAuth.instance.currentUser!.uid);
-        //print(data.text);
+
+        //TODO ATTACH A DATABSE UPDATER REFERENCE TO WHERTEVER THE USER LOGIN, THAT MEANS IT WILL PULL WHEN YOU DELETE/ADD A HABIT//
         Navigator.pop(context);
         addItemToList();
 
