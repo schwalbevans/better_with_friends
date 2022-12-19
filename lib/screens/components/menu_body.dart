@@ -148,12 +148,14 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           "Frequency": dropdownvalue
           });
         }
-       // final data = await ref.child("Habits/" + FirebaseAuth.instance.currentUser!.uid).get();
-        //if (data.exists) {
-         // print(data.value);
-        //} else {
-          //print('No data available.');
-        //}
+        final getRef = FirebaseDatabase.instance.ref();
+        final data = await getRef.child("Habits/" + FirebaseAuth.instance.currentUser!.uid +"/1").get();
+        print("Habits/" + FirebaseAuth.instance.currentUser!.uid);
+        if (data.exists) {
+         print(data.value);
+        } else {
+          print('No data available.');
+        }
         //print("Habits/" + FirebaseAuth.instance.currentUser!.uid);
         //print(data.text);
         Navigator.pop(context);
