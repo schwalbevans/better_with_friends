@@ -8,25 +8,31 @@ import 'package:better_with_friends/screens/components/body.dart';
 class menuBody extends StatefulWidget {
   HomePage createState()=> HomePage();
 }
+
 class HomePage extends State<menuBody>{
   @override
   String dropdownvalue = "Daily";
-  FirebaseDatabase database = FirebaseDatabase.instance;
+  //FirebaseDatabase database = FirebaseDatabase.instance;
 
   DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
-
+ // ref.onChildAdded.listen((event)) {
+    //TODO FIGURE OUT THIS DB REFERNCE THING!!!!!!!
+  //}
   final habitController = TextEditingController();
   final passController = TextEditingController();
   final phoneController = TextEditingController();
   List<String> HabitNames = <String>['Aby', 'Aish', 'Ayan', 'Ben', 'Bob', 'Charlie', 'Cook', 'Carline'];
+
   var data;
   get userId => null;
+
 
   void dispose() {
     // Clean up the controller when the widget is disposed.
     habitController.dispose();
     passController.dispose();
   }
+
   void addItemToList() {
     setState(() {
       HabitNames.insert(0, "hello");//Change to input actual data from the database
@@ -122,7 +128,6 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
         var numOfHabits = temp.toString();
         int find = numOfHabits.indexOf("numOfHabits");
         int final_num = int.parse(numOfHabits[find + 13]);
-        //TODO TAKE THIS STRING AND PULL OUT THE NUM OF HABITS//
         if (snapshot.exists) {
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" );
           var tempHab = final_num;
@@ -149,7 +154,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           });
         }
 
-        //TODO ATTACH A DATABSE UPDATER REFERENCE TO WHERTEVER THE USER LOGIN, THAT MEANS IT WILL PULL WHEN YOU DELETE/ADD A HABIT//
+        //TODO ATTACH A DATABSE UPDATER REFERENCE TO WHEREVER THE USER LOGIN, THAT MEANS IT WILL PULL WHEN YOU DELETE/ADD A HABIT//
         Navigator.pop(context);
         addItemToList();
 
