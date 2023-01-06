@@ -15,13 +15,14 @@ class HomePage extends State<menuBody>{
   //FirebaseDatabase database = FirebaseDatabase.instance;
 
   DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
+
  // ref.onChildAdded.listen((event)) {
-    //TODO FIGURE OUT THIS DB REFERNCE THING!!!!!!!
+
   //}
   final habitController = TextEditingController();
   final passController = TextEditingController();
   final phoneController = TextEditingController();
-  List<String> HabitNames = <String>['Aby', 'Aish', 'Ayan', 'Ben', 'Bob', 'Charlie', 'Cook', 'Carline'];
+
 
   var data;
   get userId => null;
@@ -126,6 +127,7 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
         //This is pulling the whole habits, including the num of the habits
         Object? temp = snapshot.value;
         var numOfHabits = temp.toString();
+
         int find = numOfHabits.indexOf("numOfHabits");
         int final_num = int.parse(numOfHabits[find + 13]);
         if (snapshot.exists) {

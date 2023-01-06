@@ -1,10 +1,11 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:better_with_friends/screens/components/background_login.dart';
 import 'package:better_with_friends/screens/Inital_menu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
-
+List<String> HabitNames = <String>[];
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -167,6 +168,14 @@ class Login extends StatelessWidget {
                         password: passController.text,
                     );
                     if (userCredential != null) {
+
+                      FirebaseDatabase database = FirebaseDatabase.instance;
+                      DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
+                      ref.onValue.listen((DatabaseEvent event){
+                       final data = event.snapshot.value;
+                       String TempHabitNames = data.toString() ;
+                       print(TempHabitNames);//TODO Figure out how to make this into a proper List of strings
+                      });
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) => initalMenu()));
                     }
