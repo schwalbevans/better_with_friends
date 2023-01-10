@@ -156,7 +156,6 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
           });
         }
 
-        //TODO ATTACH A DATABSE UPDATER REFERENCE TO WHEREVER THE USER LOGIN, THAT MEANS IT WILL PULL WHEN YOU DELETE/ADD A HABIT//
         Navigator.pop(context);
         addItemToList();
 

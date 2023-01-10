@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:better_with_friends/screens/components/background_login.dart';
@@ -169,12 +171,15 @@ class Login extends StatelessWidget {
                     );
                     if (userCredential != null) {
 
-                      FirebaseDatabase database = FirebaseDatabase.instance;
+                     FirebaseDatabase database = FirebaseDatabase.instance;
                       DatabaseReference ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid);
                       ref.onValue.listen((DatabaseEvent event){
                        final data = event.snapshot.value;
-                       String TempHabitNames = data.toString() ;
-                       print(TempHabitNames);//TODO Figure out how to make this into a proper List of strings
+                       String TempHabitNames = data.toString();
+                       final re = RegExp('^[0-9]:');
+                       List<String> check =[];
+                       check = TempHabitNames.split('},'); //NOTE: HAVE TO RESTART APPLICATION TO CHANGE PRINT STATEMENT
+                       print(check);// THIS SHOULD DO IT JUST GOTTA BREAK THIS DOWN MORE
                       });
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) => initalMenu()));
