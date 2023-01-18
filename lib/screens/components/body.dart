@@ -178,8 +178,8 @@ class Login extends StatelessWidget {
                        String TempHabitNames = data.toString();
                        final re = RegExp('^[0-9]:');
                        List<String> check =[];
-                       check = TempHabitNames.split('},'); //NOTE: HAVE TO RESTART APPLICATION TO CHANGE PRINT STATEMENT
-                       print(check);// THIS SHOULD DO IT JUST GOTTA BREAK THIS DOWN MORE
+                       HabitNames = TempHabitNames.split('},'); //NOTE: HAVE TO RESTART APPLICATION TO CHANGE PRINT STATEMENT
+                       print(HabitNames);// THIS SHOULD DO IT JUST GOTTA BREAK THIS DOWN MORE
                       });
                         Navigator.of(context).push(
                             MaterialPageRoute(builder: (context) => initalMenu()));

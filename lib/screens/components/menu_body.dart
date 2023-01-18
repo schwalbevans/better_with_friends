@@ -36,7 +36,6 @@ class HomePage extends State<menuBody>{
 
   void addItemToList() {
     setState(() {
-      HabitNames.insert(0, "hello");//Change to input actual data from the database
     });
   }
 
