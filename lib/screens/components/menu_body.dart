@@ -128,7 +128,12 @@ void openDialog(context) => showDialog( builder: (context) => AlertDialog(
         var numOfHabits = temp.toString();
 
         int find = numOfHabits.indexOf("numOfHabits");
-        int final_num = int.parse(numOfHabits[find + 13]);
+        final number = num.tryParse(numOfHabits[find + 14]);
+        int final_num;
+        if (number != null) {
+          final_num = int.parse(numOfHabits[find + 13] + numOfHabits[find + 14]);
+        }
+        final_num = int.parse(numOfHabits[find + 13]);
         if (snapshot.exists) {
           ref = FirebaseDatabase.instance.ref("Habits/" + FirebaseAuth.instance.currentUser!.uid + "/" );
           var tempHab = final_num;
